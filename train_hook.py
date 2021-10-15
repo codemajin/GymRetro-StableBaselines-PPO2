@@ -66,7 +66,7 @@ class TrainHook:
         if need_update:
             self.__best_mean_reward = mean_reward
 
-            file_name = os.path.join(self.__log_dir, f"{self.__saved_file_name}_{self.__nupdates}")
+            file_name = os.path.join(self.__log_dir, self.__saved_file_name)
             _locals['self'].model.save(file_name)
 
         return need_update

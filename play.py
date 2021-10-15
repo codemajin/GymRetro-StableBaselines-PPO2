@@ -26,8 +26,8 @@ from environment import make_environment
 
 # コマンドライン引数
 flags.DEFINE_string('logging_dir', './logs', 'ログの出力先ディレクトリを指定する.')
-flags.DEFINE_string('saved_file_name', 'trained_model', '学習済みモデルの保存ファイル名で, 拡張子は指定しない.')
-flags.DEFINE_string('movie_file_name', 'ai_play.mp4', 'モデルが実行したゲーム画面を保存する動画ファイル名')
+flags.DEFINE_string('saved_file_name', './logs/trained_model', '学習済みモデルの保存ファイル名で, 拡張子は指定しない.')
+flags.DEFINE_string('movie_file_name', 'play_movie.mp4', 'モデルが実行したゲーム画面を保存する動画ファイル名')
 flags.DEFINE_integer('n_episodes', 5, 'ゲームの実行回数を指定する')
 
 
@@ -87,6 +87,9 @@ def play(_argv: List[str]) -> None:
     Args:
         _argv (List[str]): コマンドライン引数
     """
+    # ログのディレクトリ作成
+    os.makedirs(flags.FLAGS.logging_dir, exist_ok=True)
+
     # 環境の作成
     env = make_environment(log_dir=flags.FLAGS.logging_dir)
 
